@@ -88,7 +88,7 @@
 @endsection
 <script>
     function reloadFollowers() {
-        
+
         $("#followers").load(location.href + " #followers");
 
     }
