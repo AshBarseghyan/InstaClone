@@ -40,7 +40,7 @@
                     @endcan
 
                 </div>
-
+{{--asdasdsa--}}
                 <div class="d-flex " >
 
                     <div class="mr-3"><strong class="mr-1">{{$postsCount}}</strong>posts</div>
