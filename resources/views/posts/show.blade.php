@@ -11,9 +11,16 @@
 {{--            {{$user->profile->profileImage()}}--}}
             <div class="col-4 ">
                 <div class="d-flex">
-                    <div class="mr-4"> <img class="rounded-circle" src="{{$post->user->profile->profileImage()}}" alt="" style="height: 50px; width: 50px"></div>
-                    <a href="/profile/{{$post->user_id}}"> <h3 class="mr-2">{{$post->user->username}}</h3> </a>
-                    <a href="#">Follow</a>
+
+                    <a href="/profile/{{$post->user_id}}" class="mr-2">
+                        <div class="mr-4 d-flex">
+                        <img class="rounded-circle mr-3" src="{{$post->user->profile->profileImage()}}" alt="" style="height: 50px; width: 50px">
+                        <h3 class="mr-2 d-block">{{$post->user->username}}</h3>
+
+                    </div>
+                    </a>
+                    @cannot('update', $post->user->profile)   <follow-button user-id="{{$post->user_id}}" follows="{{$follows}}"> </follow-button >
+                    @endcannot
                 </div>
                 <hr>
                 <p>{{$post->caption}}</p>
