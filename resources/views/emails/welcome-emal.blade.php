@@ -9,7 +9,5 @@
 
 {{--Thanks,<br>--}}
 {{--{{ config('app.name') }}--}}
-
     <h1>Thank's for registraiton!</h1>
-
 @endcomponent

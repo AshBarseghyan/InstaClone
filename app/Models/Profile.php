@@ -9,19 +9,19 @@ class Profile extends Model
 {
     use HasFactory;
 
-    protected $guarded=[];
+    protected $guarded = [];
 
-    public function profileImage(){
-        $imagePath ="/storage/profile/no-image.png";
-
-        if($this->image){
-          return  "/storage/". $this->image;
+    public function profileImage()
+    {
+        $imagePath = "/storage/profile/no-image.png";
+        if ($this->image) {
+            return "/storage/" . $this->image;
         }
-        return  $imagePath;
+        return $imagePath;
     }
 
-    public function followers(){
-
+    public function followers()
+    {
         return $this->belongsToMany(User::class);
     }
 
