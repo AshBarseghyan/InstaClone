@@ -39,7 +39,7 @@
                                        follows="{{$follows}}">
                         </follow-button>
                     @endcannot
-                    @can('update', $user->profile)  <a class="btn btn-primary" href="/p/create">Add New Post</a>
+                    @can('update', $user->profile)  <a class="btn btn-primary" href="{{route('p.create')}}">Add New Post</a>
                     @endcan
                 </div>
                 <div class="d-flex ">
@@ -47,7 +47,7 @@
                     <div class="mr-3"><strong id="followers" class="mr-1">{{$followersCount}}</strong>followers</div>
                     <div class="mr-3"><strong class="mr-1">{{$followingCount}}</strong>following</div>
                 </div>
-                @can('update', $user->profile)  <a href="/profile/{{$user->id}}/edit">Edit Profile</a> @endcan
+                @can('update', $user->profile)  <a href="{{route('profile.edit',['user' => 1])}}">Edit Profile</a> @endcan
                 <div class="mt-3">
                     <strong>{{$user->profile->title}}</strong>
                     <p class="mb-0">{{$user->profile->description}}</p>
@@ -61,7 +61,7 @@
         <div class="row">
             @foreach($user->posts as $post)
                 <div class="col-4 pb-4 ">
-                    <a href="/p/{{$post->id}}">
+                    <a href="{{route('p.show',['post'=>$post->id])}}">
                         <img src="/storage/{{$post->image}}" alt="" class="rounded  w-100">
                     </a>
                 </div>
@@ -70,8 +70,8 @@
     </div>
 @endsection
 
-<script>
-    function reloadFollowers() {
+<script>function reloadFollowers() {
         $("#followers").load(location.href + " #followers");
     }
+
 </script>

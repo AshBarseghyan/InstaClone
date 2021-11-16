@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <h1 class="text-center">FolloWs PoSts</h1>
+    <h1 class="text-center">Follows Posts</h1>
     @foreach($posts as $post)
         <div class="container mt-5">
             <div class="row  justify-content-center">

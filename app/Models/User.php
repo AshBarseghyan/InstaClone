@@ -53,6 +53,7 @@ class User extends Authenticatable
             $user->profile()->create(); //???????
             Mail::to($user->email)->send(new NewUserWelcomeMail());
         });
+
     }
 
     public function posts()
@@ -63,6 +64,11 @@ class User extends Authenticatable
     public function following()
     {
         return $this->belongsToMany(Profile::class);
+    }
+
+    public function likePost()
+    {
+        return $this->belongsToMany(Post::class,'likes');
     }
 
     public function profile()
