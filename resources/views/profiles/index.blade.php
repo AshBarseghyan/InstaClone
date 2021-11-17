@@ -47,7 +47,7 @@
                     <div class="mr-3"><strong id="followers" class="mr-1">{{$followersCount}}</strong>followers</div>
                     <div class="mr-3"><strong class="mr-1">{{$followingCount}}</strong>following</div>
                 </div>
-                @can('update', $user->profile)  <a href="{{route('profile.edit',['user' => 1])}}">Edit Profile</a> @endcan
+                @can('update', $user->profile)  <a href="{{route('profile.edit',['user' => $user->id])}}">Edit Profile</a> @endcan
                 <div class="mt-3">
                     <strong>{{$user->profile->title}}</strong>
                     <p class="mb-0">{{$user->profile->description}}</p>
