@@ -26,7 +26,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'title' => 'required|min:4',
-            'description' => 'required|min:5',
+            'description' => 'required|min:5|max:50',
             'url'=>'required|url',
 
         ];

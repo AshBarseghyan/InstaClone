@@ -11,6 +11,8 @@
     <title>Instagram</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -55,6 +57,8 @@
                             <!-- Right Side Of Navbar -->
                             <ul class="navbar-nav ml-auto">
                                 <!-- Authentication Links -->
+
+
                                 @guest
                                     @if (Route::has('login'))
                                         <li class="nav-item">
@@ -67,7 +71,24 @@
                                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         </li>
                                     @endif
+
                                 @else
+
+                                    {{-- Notification list start--}}
+                                    <li id='nots'
+                                        class="dropdown d-flex justify-content-center align-items-center mr-4">
+                                        <a href="#" id="notific" class="dropdown-toggle"
+                                           data-toggle="dropdown"
+                                           role="button"
+                                           aria-expanded="false">
+                                            <span class="glyphicon glyphicon-globe"></span>
+                                            Notifications <span class="caret"> </span>
+                                        </a>
+                                        <ul id="notifications_menu" class="dropdown-menu" role="menu">
+                                        </ul>
+                                    </li>
+                                    {{-- Notification list end--}}
+
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -98,5 +119,22 @@
         @yield('content')
     </main>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "{{ route('notification') }}",
+            method: 'get',
+            data: {
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function (result) {
+                if (result.success) {
+                    $('#notifications_menu').html(result.html);
+                }
+            },
+        });
+    });
+</script>
 </body>
 </html>

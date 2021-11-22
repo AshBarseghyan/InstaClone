@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
     <div class="container mt-5">
         <div class="row  ">
@@ -10,7 +11,7 @@
                 <div class="d-flex">
                     <a href="{{route('profile.show',['user'=>$post->user_id])}}" class="mr-2">
                         <div class="mr-4 d-flex align-items-center">
-                            <img class="rounded-circle mr-3"
+                            <img class=" rounded-circle mr-3"
                                  src="{{$post->user->profile->profileImage()}}" alt=""
                                  style="height: 50px; width: 50px">
                             <h3 class="mr-2 d-block">{{$post->user->username}}</h3>
@@ -37,12 +38,11 @@
     </div>
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 <script>
 
     $(document).ready(function () {
-        var likes = {{$likes}};
+        {{--let likes = {{$likes}};--}}
         $('#heart').click(function (e) {
             e.preventDefault();
             $.ajax({
@@ -56,12 +56,13 @@
                 success: function (result) {
                     if (result['attached'][0]) {
                         document.getElementById("heart").src = "/Svg/heart_likes.svg";
-                        ++likes;
+                        // ++likes;
                     } else {
                         document.getElementById("heart").src = "/Svg/heart.svg";
-                        --likes;
+                        //   --likes;
                     }
-                    document.getElementById("likes_count").innerHTML = likes;
+                    $("#likes_count").load(location.href + " #likes_count");
+                    // document.getElementById("likes_count").innerHTML = likes;
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

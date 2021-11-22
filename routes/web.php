@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfilesController;
-
+use App\Http\Controllers\NotificationController;
+use \App\Http\Controllers\LikesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +16,6 @@ use App\Http\Controllers\ProfilesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 Auth::routes();
 
@@ -30,16 +30,15 @@ Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profi
 Route::patch('/profile/{user}', [ProfilesController::class, 'update'])->name('profile.update');
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit'])->name('profile.edit');
 
-
-
 Route::get('/email', function () {
     return new \App\Mail\NewUserWelcomeMail();
 });
 
 Route::post('follow/{user}', [\App\Http\Controllers\FollowsController::class, 'store']);
 
-Route::get('like/{post}',[\App\Http\Controllers\LikesController::class,'store'])->name('like.store');
-Route::get('likes',[\App\Http\Controllers\LikesController::class,'contain'])->name('likes.contain');
+Route::get('like/{post}',[LikesController::class,'store'])->name('like.store');
+Route::get('likes',[LikesController::class,'contain'])->name('likes.contain');
 
-
+Route::get('/notifications',[NotificationController::class,'show'])->name('notifications.show');
+Route::get('/notification/get',[NotificationController::class,'get'])->name('notification');
 
