@@ -20,13 +20,13 @@ use \App\Http\Controllers\LikesController;
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', [PostsController::class, 'index']);
+    Route::get('/', [PostsController::class, 'index'])->name('index');
     Route::post('/p', [PostsController::class, 'store'])->name('p.store');
     Route::get('/p/create', [PostsController::class, 'create'])->name('p.create');
     Route::get('/p/{post}', [PostsController::class, 'show'])->name('p.show');
 });
 
-Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profile.show');
+Route::get('/profile/{user}', [ProfilesController::class, 'index'])->middleware('role')->name('profile.show');
 Route::patch('/profile/{user}', [ProfilesController::class, 'update'])->name('profile.update');
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit'])->name('profile.edit');
 

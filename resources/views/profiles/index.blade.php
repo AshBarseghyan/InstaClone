@@ -70,6 +70,8 @@
                     @endcannot
                     @can('update', $user->profile)  <a class="btn btn-primary" href="{{route('p.create')}}">Add New Post</a>
                     @endcan
+
+
                 </div>
                 <div class="d-flex ">
                     <div class="mr-3"><strong class="mr-1">{{$postsCount}}</strong>posts</div>
